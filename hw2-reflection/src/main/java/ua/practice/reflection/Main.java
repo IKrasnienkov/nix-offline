@@ -1,0 +1,11 @@
+package ua.practice.reflection;
+
+public class Main {
+    public static void main(String[] args) {
+        AppProperties appProperties = new AppProperties();
+        System.out.println(appProperties);
+
+        InitAppProperties.init(appProperties);
+        System.out.println(appProperties);
+    }
+}
