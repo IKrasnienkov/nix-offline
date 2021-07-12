@@ -18,9 +18,9 @@ public class LocationService {
         this.bufferedReader = bufferedReader;
     }
 
-    public boolean createLocation() {
+    public void createLocation() {
         Location location = initLocation();
-        return locationDao.createLocation(location);
+        locationDao.createLocation(location);
     }
 
     public Integer getCountOfLocations() {

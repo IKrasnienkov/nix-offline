@@ -29,27 +29,6 @@ public class RouteDao {
         }
     }
 
-    public Optional<Route> getById(int fromId, int toId) {
-        Optional<Route> routeOptional = Optional.empty();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ROUTES_BY_FROM_AND_TO_ID)) {
-            preparedStatement.setInt(1, fromId);
-            preparedStatement.setInt(1, toId);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                Integer routeId = rs.getInt(1);
-                Integer routeFromId = rs.getInt(2);
-                Integer routeToId = rs.getInt(3);
-                Integer routeCost = rs.getInt(4);
-                Route route = new Route(routeId, routeFromId, routeToId, routeCost);
-                routeOptional = Optional.of(route);
-            }
-            connection.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return routeOptional;
-    }
-
     public List<Route> getAllRoutes() {
         ArrayList<Route> routes = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {

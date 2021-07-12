@@ -28,16 +28,16 @@ public class RouteService {
     }
 
     private Route initRoute() {
-        Integer fromId = 0;
-        Integer toId = 0;
-        Integer cost = 0;
+        int fromId = 0;
+        int toId = 0;
+        int cost = 0;
         try {
             System.out.println("input start location id (from_id)");
-            fromId = Integer.valueOf(bufferedReader.readLine());
+            fromId = Integer.parseInt(bufferedReader.readLine());
             System.out.println("input finish location id (to_id)");
-            toId = Integer.valueOf(bufferedReader.readLine());
+            toId = Integer.parseInt(bufferedReader.readLine());
             System.out.println("input cost of this route");
-            cost = Integer.valueOf(bufferedReader.readLine());
+            cost = Integer.parseInt(bufferedReader.readLine());
         } catch (IOException exception) {
             exception.printStackTrace();
         }

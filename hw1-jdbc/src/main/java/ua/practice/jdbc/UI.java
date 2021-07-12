@@ -52,6 +52,12 @@ public class UI {
                     case "6":
                         locationService.getAllLocations().forEach(System.out::println);
                         break;
+                    case "7":
+                        problemService.getAllProblemsWithoutSolutions().forEach(System.out::println);
+                        break;
+                    case "8":
+                        routeService.getAllRoutes().forEach(System.out::println);
+                        break;
                     default:
                         System.out.println("Incorrect input.");
                 }
@@ -69,6 +75,8 @@ public class UI {
         System.out.println("4 - solve problems");
         System.out.println("5 - print solutions");
         System.out.println("6 - print all locations");
+        System.out.println("7 - print all problems without solutions");
+        System.out.println("8 - print all routes");
         System.out.println("0 - stop");
     }
 }

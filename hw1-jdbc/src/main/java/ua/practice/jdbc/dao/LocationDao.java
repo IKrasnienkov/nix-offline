@@ -16,34 +16,14 @@ public class LocationDao {
         this.connection = connection;
     }
 
-    public boolean createLocation(Location location) {
+    public void createLocation(Location location) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_LOCATIONS)) {
             preparedStatement.setString(1, location.getName());
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException throwable) {
             System.out.println("This location already exists");
-            return false;
         }
-        return true;
-    }
-
-    public Optional<Location> getById(int id) {
-        Optional<Location> loc = Optional.empty();
-        try (Statement statement = connection.createStatement()) {
-            String s = String.format(GET_BY_ID, id);
-            ResultSet rs = statement.executeQuery(s);
-            while (rs.next()) {
-                Integer locationId = rs.getInt(1);
-                String name = rs.getString(2);
-                Location location = new Location(locationId, name);
-                loc = Optional.of(location);
-            }
-            connection.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return loc;
     }
 
     public Integer getCountOfLocations() {
