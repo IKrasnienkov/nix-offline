@@ -1,8 +1,5 @@
 package ua.practice.reflection;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class AppProperties {
     @PropertyKey("connections.name")
     public String name;
