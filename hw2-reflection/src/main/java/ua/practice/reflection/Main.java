@@ -5,7 +5,7 @@ public class Main {
         AppProperties appProperties = new AppProperties();
         System.out.println(appProperties);
 
-        InitAppProperties.init(appProperties);
+        Initializer.init(appProperties);
         System.out.println(appProperties);
     }
 }

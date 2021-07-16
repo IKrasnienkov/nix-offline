@@ -10,12 +10,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
-public class InitAppProperties {
+public class Initializer {
     private static Properties props;
 
-    public static void init(AppProperties appProperties) {
+    public static void init(Object object) {
         loadProperties();
-        Class<?> clazz = appProperties.getClass();
+        Class<?> clazz = object.getClass();
         Field[] fields = clazz.getFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(PropertyKey.class)) {
@@ -24,14 +24,14 @@ public class InitAppProperties {
                 Object value = props.getProperty(propertyKey.value());
                 try {
                     value = ConvertUtils.convert(value, typeOfField);
-                    field.set(appProperties, value);
+                    field.set(object, value);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (IllegalArgumentException | ConversionException e) {
                     System.out.println(e.getMessage());
                     try {
                         value = typeOfField.getDeclaredConstructor().newInstance();
-                        field.set(appProperties, value);
+                        field.set(object, value);
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException instantiationException) {
                         instantiationException.printStackTrace();
                     }
